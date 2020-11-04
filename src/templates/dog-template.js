@@ -10,7 +10,7 @@ export default function DogTemplate({ pageContext: { dog } }) {
 }
 
 const Name = styled.h1`
-    color: royalblue;
+    color: rgb(129,163,65);
     display: inline-block;
     position: relative;
 
