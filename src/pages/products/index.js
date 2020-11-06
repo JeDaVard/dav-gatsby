@@ -18,7 +18,6 @@ const settings = {
 
 export default props => {
     const { nodes } = props.data.allContentfulProduct
-    console.log(nodes)
     return (
         <Products>
             {nodes.map(product => (
