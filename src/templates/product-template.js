@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 import Slider from 'react-slick'
 import Img from 'gatsby-image'
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from 'react-markdown'
 
 const settings = {
     dots: true,
@@ -91,6 +91,7 @@ const Info = styled.div`
     width: 50%;
     @media (max-width: 744px) {
         margin-top: 40px;
+        width: 100%;
     }
 `
 
