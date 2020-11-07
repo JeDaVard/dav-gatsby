@@ -13,8 +13,27 @@ const settings = {
     arrows: false,
 }
 
-export default function ProductTemplate(props) {
-    const { data } = props
+export const query = graphql`
+    query Product($slug: String) {
+        product: contentfulProduct(slug: { eq: $slug }) {
+            id
+            title
+            price
+            slug
+            createdAt(formatString: "hh:mm DD MMM YYYY")
+            images {
+                fluid {
+                    ...GatsbyContentfulFluid
+                }
+            }
+            description {
+                description
+            }
+        }
+    }
+`
+
+export default function ProductTemplate({ data, pageContext }) {
     return (
         <Container>
             <Product>
@@ -94,24 +113,4 @@ const Price = styled.p`
 const Description = styled.p`
     width: 100%;
     font-size: 15px;
-`
-
-export const query = graphql`
-    query GetProduct($slug: String) {
-        product: contentfulProduct(slug: { eq: $slug }) {
-            id
-            title
-            price
-            slug
-            createdAt(formatString: "hh:mm DD MMM YYYY")
-            images {
-                fluid {
-                    ...GatsbyContentfulFluid
-                }
-            }
-            description {
-                description
-            }
-        }
-    }
 `

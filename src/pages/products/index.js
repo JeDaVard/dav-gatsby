@@ -19,33 +19,58 @@ const settings = {
 export default props => {
     const { nodes } = props.data.allContentfulProduct
     return (
-        <Products>
-            {nodes.map(product => (
-                <Article key={product.id}>
-                    <Link to={'/products/' + product.slug}>
-                        <Image>
-                            <Slider {...settings}>
-                                {product.images.map(image => (
-                                    <Img key={image.fluid.src} fluid={image.fluid} />
-                                ))}
-                            </Slider>
-                        </Image>
-                        <Info>
-                            <Title>{product.title}</Title>
-                            <Price>${product.price}</Price>
-                        </Info>
-                    </Link>
-                </Article>
-            ))}
-        </Products>
+        <Container>
+            <Products>
+                {nodes.map(product => (
+                    <Article key={product.id}>
+                        <Link to={'/products/' + product.slug}>
+                            <Image>
+                                <Slider {...settings}>
+                                    {product.images.map(image => (
+                                        <Img key={image.fluid.src} fluid={image.fluid} />
+                                    ))}
+                                </Slider>
+                            </Image>
+                            <Info>
+                                <Title>{product.title}</Title>
+                                <Price>${product.price}</Price>
+                            </Info>
+                        </Link>
+                    </Article>
+                ))}
+            </Products>
+            <Nav>
+                <Link to={`/products/`}>Next</Link>
+            </Nav>
+        </Container>
     )
 }
 
-const Products = styled.div`
+const Container = styled.div`
+    margin: 20px auto;
     width: 94%;
+`
+
+const Nav = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+
+    a {
+        text-decoration:none;
+        outline: 0;
+        cursor: pointer;
+        border: 1px solid mediumpurple;
+        background: purple;
+        border-radius: 20px;
+        color: white;
+        padding: 4px 16px;
+    }
+`
+
+const Products = styled.div`
     font-weight: 900;
     display: flex;
-    margin: 20px auto;
 
     @media (max-width: 744px) {
         flex-direction: column;
