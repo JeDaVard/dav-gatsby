@@ -7,6 +7,18 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain remote schema Query type
+        typeName: "SWAPI",
+        // This is the field under which it's accessible
+        fieldName: "swapi",
+        // URL to query from
+        url: "http://localhost:5000/graphql",
+      },
+    },
+    `gatsby-plugin-typegen`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     {

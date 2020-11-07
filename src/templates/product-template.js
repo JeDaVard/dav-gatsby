@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 import Slider from 'react-slick'
 import Img from 'gatsby-image'
+import ReactMarkdown from "react-markdown"
 
 const settings = {
     dots: true,
@@ -33,7 +34,7 @@ export const query = graphql`
     }
 `
 
-export default function ProductTemplate({ data, pageContext }) {
+export default function ProductTemplate({ data }) {
     return (
         <Container>
             <Product>
@@ -48,7 +49,9 @@ export default function ProductTemplate({ data, pageContext }) {
                     <Title>{data.product.title}</Title>
                     <Date>{data.product.createdAt}</Date>
                     <Price>${data.product.price}</Price>
-                    <Description>{data.product.description.description}</Description>
+                    <Description>
+                        <ReactMarkdown source={data.product.description.description} />
+                    </Description>
                 </Info>
             </Product>
             <Link to={'/products'}>&larr; Back</Link>
@@ -110,7 +113,7 @@ const Price = styled.p`
     padding: 2px 10px;
     color: white;
 `
-const Description = styled.p`
+const Description = styled.div`
     width: 100%;
     font-size: 15px;
 `
